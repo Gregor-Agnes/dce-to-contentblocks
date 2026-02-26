@@ -182,10 +182,14 @@ class UpgradeUtility implements LoggerAwareInterface
             $data[$dceField['variable']] = [];
             foreach ($fileIds as $fileId) {
                 $fileRepository = GeneralUtility::makeInstance(FileRepository::class);
-                $file = $fileRepository->findByUid($fileId);
-
-                $data[$dceField['variable']][] = $file;
+                try {
+                    $file = $fileRepository->findByUid($fileId);
+                    
+                    $data[$dceField['variable']][] = $file;
+                } catch (\Exception $e) {
+                    $this->logger->error($e->getMessage());}
             }
+            
         } elseif (($dceFieldConfiguration['type'] === 'inline' && ($dceFieldConfiguration['foreign_table'] ?? '') === 'sys_file_reference') || ($dceFieldConfiguration['type'] === 'file')) {
             $data[$dceField['variable']] = [];
 
