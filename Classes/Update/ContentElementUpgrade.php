@@ -16,7 +16,7 @@ use TYPO3\CMS\Install\Updates\RepeatableInterface;
 use TYPO3\CMS\Install\Updates\UpgradeWizardInterface;
 use WEBcoast\DceToContentblocks\Utility\UpgradeUtility;
 
-#[UpgradeWizard('dce-to-contentblocks-content-element-upgrade')]
+//#[UpgradeWizard('dce-to-contentblocks-content-element-upgrade')]
 readonly class ContentElementUpgrade implements UpgradeWizardInterface, RepeatableInterface
 {
     public function __construct(protected RecordDataMigratorFactory $recordDataMigratorFactory, protected UpgradeUtility $upgradeUtility) {}
